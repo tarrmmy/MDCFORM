@@ -25,7 +25,7 @@ function App() {
 
         try{
             button.innerHTML = "Loading..."
-            fetch("http://api.theacademy.com.ng/camp/participant/auth/register", {
+            fetch("https://api.theacademy.com.ng/camp/participant/auth/register", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ function App() {
 
     // Branch
     try{
-        fetch("api.theacademy.com.ng/generic/branch").then((data) => data.json()).then(({data}) => {
+        fetch("https://api.theacademy.com.ng/generic/branch").then((data) => data.json()).then(({data}) => {
             console.log(data)
             data?.map((branch) => {
                 const option = document.createElement("option")
