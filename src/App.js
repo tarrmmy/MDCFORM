@@ -1,5 +1,7 @@
-import {Button} from 'flowbite-react';
 import { useState } from 'react';
+import Btn from './Btn';
+import Alert from './Alert';
+import { notification } from 'antd';
 // import Test from './Test';
 // import { FloatingLabel } from 'flowbite-react';
 // import LinkComponent from ''
@@ -8,8 +10,9 @@ import { useState } from 'react';
 function App() {
 
     // Error input
-    const [error, setError] = useState(false)
-
+    const [msg, setMsg] = useState()
+    const [loading, setLoading] = useState(false)
+console.log(loading)
     // API
     const [payload, setPayload] = useState({
         firstName : '',
@@ -20,12 +23,13 @@ function App() {
         paymentMethod : '',
         ageRange : '',
         category : '',
+        class : '',
         schoolName : '',
         branchId : '',
         howDidYouHear : '',
         address : '',
         state : '',
-        message: ''
+        // message: ''
     })
 
     const handleRegister = (e) => {
@@ -33,25 +37,21 @@ function App() {
         const success = document.getElementById("success_alert")
         const button = document.getElementById("submit_button")
         const error = document.getElementById("error_alert")
-        console.log(payload)
-       
-
-        if(payload.length === 0) {
-            setError(true)
-        }
+        console.log(payload)  
 
         try{
             button.innerHTML = "Loading..."
+            setLoading(true)
             fetch("https://api.theacademy.com.ng/camp/participant/auth/register", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(payload),
-            }).then(() => {success.style.display = "block"})
-        }catch(err){
-            error.style.display = "block"
-            error.innerHTML = err?.message || "Something went wrong!"
+            }).then((response) => response.json())
+            .then((data)=>{setMsg(data.message); setLoading(false); notification.success({message: data.message})})
+        }catch(error){
+            console.log(error)
         }
         button.innerHTML = "submit_button"
     }
@@ -72,9 +72,10 @@ function App() {
         console.log(err)
     }
 
-
+console.log(msg)
   return (
     <div className="App items-center">
+        <Alert />
         <div className='py-20'>
             <h2 className='text-center mb-4'>Register for the MDC 2023 Major Outing</h2>
             <form
@@ -84,21 +85,21 @@ function App() {
                     <input required onChange={(e) => setPayload({...payload, firstName: e.target.value})} type="text"  className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                     <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">First Name</label>
                 </div>
-                {error? <p className='text-red-600'>Please fill this field</p> : ''}
+                
                 <div className="relative mb-2">
                     <input required onChange={(e) => setPayload({...payload, lastName: e.target.value})} type="text" id="last_name" className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                     <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Last Name</label>
-                    {error? <p className='text-red-600'>Please fill this field</p> : ''}
+                    
                 </div>
                 <div className="relative mb-2">
                     <input required onChange={(e) => setPayload({...payload, email: e.target.value})} type="email" id="email" className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                     <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Email</label>
-                    {error? <p className='text-red-600'>Please fill this field</p> : ''}    
+                        
                 </div>
                 <div className="relative mb-2">
                     <input required  onChange={(e) => setPayload({...payload, phoneNumber: e.target.value})} type="tel" id="phone_number" className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                     <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Phone Number (Whatsapp)</label>
-                    {error? <p className='text-red-600'>Please fill this field</p> : ''}
+                    
                 </div>
                 <select required onChange={(e) => setPayload({...payload, gender: e.target.value})} id="gender" className="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value=''>Gender</option>
@@ -121,17 +122,24 @@ function App() {
                 </select>
                 <select required onChange={(e) => setPayload({...payload, category: e.target.value})} id="category" className="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value=''>Category</option>
-                    <option >Primary school student</option>
-                    <option>Junior secondary school student</option>
-                    <option>Secondary school leaver</option>
+                    <option>Kiddies</option>
+                    <option>Teenager</option>
                     <option>Undergraduate</option>
-                    <option>Graduate</option>
                     <option>Adult</option>
                 </select>
+                <select required onChange={(e) => setPayload({...payload, class: e.target.value})} id="class" className="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value=''>Class</option>
+                    <option>Primary school student</option>
+                    <option>Junior secondary school student</option>
+                    <option>Senior secondary school student</option>
+                    <option>Secondary school leavers</option>
+                    <option>Undergraduates</option>
+                    <option>Graduate</option>
+                </select>
                 <div className="relative mb-2">
-                    <input onChange={(e) => setPayload({...payload, schoolName: e.target.value})} type="text" id="school_name" className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                    <input required onChange={(e) => setPayload({...payload, schoolName: e.target.value})} type="text" id="school_name" className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                     <label  className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">School</label>
-                    {error? <p className='text-red-600'>Please fill this field</p> : ''}
+                    
                 </div>
                 <select required onChange={(e) => setPayload({...payload, branchId: e.target.value})} id="branch_id" className="bg-gray-50 border border-gray-300 text-gray-900 mb-3 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value=''>What ta'aleem branch do you belong to?</option>
@@ -141,9 +149,9 @@ function App() {
                 <textarea  onChange={(e) => setPayload({...payload, address: e.target.value})} id='address' rows="3" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="If None of the Above, Kindly state your location / area"></textarea>
 
                 <div className="relative mb-2">
-                    <input required onChange={(e) => setPayload({...payload, state: e.target.value})} type="text" id="school_name" className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                    <input required onChange={(e) => setPayload({...payload, state: e.target.value})} type="text" id="state" className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                     <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">State</label>
-                    {error? <p className='text-red-600'>Please fill this field</p> : ''}
+                    
                 </div>
                 
                 <select  onChange={(e) => setPayload({...payload, howDidYouHear: e.target.value})} className="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -156,11 +164,10 @@ function App() {
                 <label className="block text-sm font-medium text-gray-900 dark:text-white">Upload your receipt</label>
                 <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file"  />
 
-                <Button type="submit" id="submit_button">
-                    Submit
-                </Button>
-
-                {/* <p id='success_alert'> Registration successful</p> */}
+                <Btn class='w-full' type="submit" id="submit_button" loading={loading} />
+                {/* <div id='alert' class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                <span class="font-medium">{msg}</span>
+                </div> */}
             </form>
         </div>
     </div>
