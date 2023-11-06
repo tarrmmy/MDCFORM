@@ -77,7 +77,14 @@ console.log(msg)
     <div className="App items-center">
         <Alert />
         <div className='py-20'>
-            <h2 className='text-center mb-4'>Register for the MDC 2023 Major Outing</h2>
+            <h2 className='text-center mb-4 text-xl font-bold'>Register for the MDC 2023 Major Outing</h2>
+            <h3 className='text-center'>
+                <span className='font-bold'>0530449457</span> | GT Bank
+            </h3>
+            <h3 className='text-center'>THE ACADEMY/PROGRAMMES</h3>
+            <p className='text-center mb-3'>
+                (Make sure you keep the receipt.)
+            </p>  
             <form
                 onSubmit={handleRegister}
                 className="flex max-w-md border mx-auto rounded-md flex-col p-10 gap-4">
@@ -141,9 +148,8 @@ console.log(msg)
                     <label  className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">School</label>
                     
                 </div>
-                <select required onChange={(e) => setPayload({...payload, branchId: e.target.value})} id="branch_id" className="bg-gray-50 border border-gray-300 text-gray-900 mb-3 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select required onChange={(e) => setPayload({...payload, branchId: Number(e.target.value)})} id="branch_id" className="bg-gray-50 border border-gray-300 text-gray-900 mb-3 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value=''>What ta'aleem branch do you belong to?</option>
-                    <option value=""></option>
                 </select>
                 
                 <textarea  onChange={(e) => setPayload({...payload, address: e.target.value})} id='address' rows="3" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="If None of the Above, Kindly state your location / area"></textarea>
