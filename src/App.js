@@ -145,55 +145,60 @@ console.log(msg)
                     <input required onChange={(e) => setPayload({...payload, schoolName: e.target.value})} type="text" id="school_name" className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                     <label  className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Name of School</label>
                 </div>
-                <div className="relative mb-2">
-                    <select required onChange={(e) => setPayload({...payload, state: e.target.value})} id="category" className="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value=''>State</option>
-                    <option>Abia</option>
-                    <option>Abuja</option>
-                    <option>Adamawa</option>
-                    <option>Akwa Ibom</option>
-                    <option>Anambra</option>
-                    <option>Bauchi</option>
-                    <option>Bayelsa</option>
-                    <option>Benue</option>
-                    <option>Borno</option>
-                    <option>Cross River</option>
-                    <option>Delta</option>
-                    <option>Ebonyi</option>
-                    <option>Edo</option>
-                    <option>Ekiti</option>
-                    <option>Enugu</option>
-                    <option>Gombe</option>
-                    <option>Imo</option>
-                    <option>Jigawa</option>
-                    <option>Kaduna</option>
-                    <option>Kano</option>
-                    <option>Katsina</option>
-                    <option>Kebbi</option>
-                    <option>Kogi</option>
-                    <option>Kwara</option>
-                    <option>Lagos</option>
-                    <option>Nasarawa</option>
-                    <option>Niger</option>
-                    <option>Ogun</option>
-                    <option>Ondo</option>
-                    <option>Osun</option>
-                    <option>Oyo</option>
-                    <option>Plateau</option>
-                    <option>Rivers</option>
-                    <option>Sokoto</option>
-                    <option>Taraba</option>
-                    <option>Yobe</option>
-                    <option>Zamfara</option>
-                    </select>
+
+                <div className='relative flex gap-10 mb-1'>
+                    <div className="relative mb-2 w-1/2">
+                        <select required onChange={(e) => setPayload({...payload, state: e.target.value})} id="category" className="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value=''>State</option>
+                        <option>Abia</option>
+                        <option>Abuja</option>
+                        <option>Adamawa</option>
+                        <option>Akwa Ibom</option>
+                        <option>Anambra</option>
+                        <option>Bauchi</option>
+                        <option>Bayelsa</option>
+                        <option>Benue</option>
+                        <option>Borno</option>
+                        <option>Cross River</option>
+                        <option>Delta</option>
+                        <option>Ebonyi</option>
+                        <option>Edo</option>
+                        <option>Ekiti</option>
+                        <option>Enugu</option>
+                        <option>Gombe</option>
+                        <option>Imo</option>
+                        <option>Jigawa</option>
+                        <option>Kaduna</option>
+                        <option>Kano</option>
+                        <option>Katsina</option>
+                        <option>Kebbi</option>
+                        <option>Kogi</option>
+                        <option>Kwara</option>
+                        <option>Lagos</option>
+                        <option>Nasarawa</option>
+                        <option>Niger</option>
+                        <option>Ogun</option>
+                        <option>Ondo</option>
+                        <option>Osun</option>
+                        <option>Oyo</option>
+                        <option>Plateau</option>
+                        <option>Rivers</option>
+                        <option>Sokoto</option>
+                        <option>Taraba</option>
+                        <option>Yobe</option>
+                        <option>Zamfara</option>
+                        </select>
+                    </div>
+                    <div className="relative mb-2 w-1/2">
+                        <select required onChange={(e) => setPayload({...payload, category: e.target.value})} id="category" className="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value=''>Category</option>
+                            <option>Kiddies</option>
+                            <option>Teenager</option>
+                            <option>Undergraduate</option>
+                            <option>Adult</option>
+                        </select>
+                    </div>
                 </div>
-                <select required onChange={(e) => setPayload({...payload, category: e.target.value})} id="category" className="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value=''>Category</option>
-                    <option>Kiddies</option>
-                    <option>Teenager</option>
-                    <option>Undergraduate</option>
-                    <option>Adult</option>
-                </select>
                 <select required onChange={(e) => setPayload({...payload, branchId: Number(e.target.value)})} id="branch_id" className="bg-gray-50 border border-gray-300 text-gray-900 mb-3 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value=''>What ta'aleem branch do you belong to?</option>
                 </select>
