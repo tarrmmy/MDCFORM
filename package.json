@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^5.10.3",
     "autoprefixer": "^10.4.16",
+    "axios": "^1.6.2",
     "cra-template": "1.2.0",
     "flowbite-react": "^0.6.4",
     "postcss": "^8.4.31",
