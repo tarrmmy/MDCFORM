@@ -50,7 +50,7 @@ function Vendor() {
         },
       })
       .then((response) => response)
-      .then((data) => {
+      .then(({ data }) => {
         setMsg(data.message);
         setLoading(false);
         notification.success({ message: data.message });
