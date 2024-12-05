@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Btn from "./Btn";
+import Btn from "./components/Btn";
 import axios from "axios";
 import { notification } from "antd";
 
