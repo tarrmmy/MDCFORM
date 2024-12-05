@@ -22,17 +22,13 @@ const MultiUserRegistration = () => {
     ]);
   };
 
-  // Remove a user form
   const removeUserForm = (id) => {
     setUsers((prevState) => prevState.filter((user) => user.id !== id));
   };
 
-  // Submit all users
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitting Users:", users);
-
-    // Perform the submission logic here (e.g., send data to an API)
   };
 
   return (
@@ -50,7 +46,9 @@ const MultiUserRegistration = () => {
               <input
                 type="text"
                 value={user.name}
-                onChange={(e) => handleInputChange(user.id, "name", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange(user.id, "name", e.target.value)
+                }
                 className="w-full border px-3 py-2 rounded-md"
                 required
               />
@@ -68,7 +66,9 @@ const MultiUserRegistration = () => {
               />
             </div>
             <div className="mb-3">
-              <label className="block text-sm font-semibold mb-1">Password</label>
+              <label className="block text-sm font-semibold mb-1">
+                Password
+              </label>
               <input
                 type="password"
                 value={user.password}
