@@ -18,7 +18,7 @@ const LandingPage = () => {
         </div>
         <motion.div
           initial={{ width: 0, opacity: 0 }}
-          animate={{ width: 400, opacity: 1 }}
+          animate={{ width: 380, opacity: 1 }}
           transition={{ bounce: 0.8, duration: 1 }}
           className="p-4"
         >
@@ -60,7 +60,7 @@ const LandingPage = () => {
             </p>
           </motion.div>
         </div>
-        <div className="w-full flex justify-center items-center py-2">
+        <div className="w-full flex justify-center items-center py-2 mb-[150px]">
           <motion.div
             initial={{ top: 100, opacity: 0 }}
             animate={{ top: 0, opacity: 1 }}
