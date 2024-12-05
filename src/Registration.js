@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Btn from './Btn';
-import Alert from './Alert';
+import Btn from './components/Btn';
+import Alert from './components/Alert';
 import { notification } from 'antd';
 
 function Registration() {
