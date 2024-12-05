@@ -85,7 +85,7 @@ function Registration() {
         <div className="App items-center">
             <Alert />
             <div className='py-20'>
-                <h2 className='text-center mb-4 text-xl font-bold'>Register for the MDC 2023 Major Outing</h2>
+                <h2 className='text-center mb-4 text-xl font-bold'>Participant Registration Form</h2>
                 <h3 className='text-center'>
                     <span className='font-bold'>0530449457</span> | GT Bank
                 </h3>
@@ -236,7 +236,7 @@ function Registration() {
                 
                     
                     <select  onChange={(e) => setPayload({...payload, howDidYouHear: e.target.value})} className="bg-gray-50 border border-gray-300 text-gray-900 mb-1 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value=''>How did you hear about MDC 2023?</option>
+                        <option value=''>How did you hear about MDC 2024?</option>
                         <option>Social Media</option>
                         <option>Website</option>
                         <option>Referral</option>
