@@ -39,7 +39,7 @@ function Vendor() {
 
     setLoading(true);
     await axios
-      .post("https://api.theacademy.com.ng/camp/vendor/register", formData, {
+      .post("https://academy-api-sui8.onrender.com/api/v1/camp/vendor/register", formData, {
         // method: "POST",
 
         headers: {

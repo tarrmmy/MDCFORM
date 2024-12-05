@@ -40,7 +40,7 @@ function Registration() {
         try{
             button.innerHTML = "Loading..."
             setLoading(true)
-            fetch("https://api.theacademy.com.ng/camp/participant/auth/register", {
+            fetch("https://academy-api-sui8.onrender.com/api/v1/camp/participant/auth/register", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
