@@ -18,14 +18,13 @@ function Vendor() {
     phoneNumber: "",
     items: "",
     requirements: "",
-    // branchId: "",
     receipt: "",
   });
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const success = document.getElementById("success_alert");
-    const error = document.getElementById("error_alert");
+    // const success = document.getElementById("success_alert");
+    // const error = document.getElementById("error_alert");
     console.log(payload);
 
     const formData = new FormData();
@@ -35,7 +34,6 @@ function Vendor() {
     formData.append("email", payload.email);
     formData.append("phoneNumber", payload.phoneNumber);
     formData.append("items", payload.items);
-    // formData.append("branchId", payload.branchId);
     formData.append("requirements", payload.requirements);
     formData.append("receipt", payload.receipt);
 
@@ -62,28 +60,8 @@ function Vendor() {
     setLoading(false);
   };
 
-  // Branch
-  //   try {
-  //     fetch("https://api.theacademy.com.ng/generic/branch")
-  //       .then((data) => data.json())
-  //       .then(({ data }) => {
-  //         // console.log(data)
-  //         data?.map((branch) => {
-  //           const option = document.createElement("option");
-  //           option.value = branch?.id;
-  //           option.innerHTML = branch?.name;
-  //           document.getElementById("branch_id").appendChild(option);
-  //         });
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-
-  //   console.log(msg);
-
   return (
     <div className="App items-center">
-      {/* <Alert /> */}
       <div className="py-20">
         <h2 className="text-center mb-4 text-xl font-bold">
           VENDOR REGISTRATION
@@ -166,15 +144,6 @@ function Vendor() {
               Phone Number
             </label>
           </div>
-          {/* <select
-            onChange={(e) =>
-              setPayload({ ...payload, branchId: e.target.value })
-            }
-            id="branch_id"
-            className="bg-gray-50 border border-gray-300 text-gray-900 mb-3 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option value="">Ta'aleem Branch</option>
-          </select> */}
           <div className="relative mb-2">
             <input
               required
