@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Btn from './Btn';
 import Alert from './Alert';
 import { notification } from 'antd';
+import axios from 'axios';
 
 function Registration() {
 
     // Error input
     const [msg, setMsg] = useState()
     const [loading, setLoading] = useState(false)
+    const [branches, setBranches] = useState([])
     console.log(loading)
 
     // API
@@ -30,9 +32,9 @@ function Registration() {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        const success = document.getElementById("success_alert")
+        // const success = document.getElementById("success_alert")
         const button = document.getElementById("submit_button")
-        const error = document.getElementById("error_alert")
+        // const error = document.getElementById("error_alert")
         console.log(payload)  
 
         try{
@@ -54,19 +56,21 @@ function Registration() {
     
 
     // Branch
-    try{
-        fetch("https://api.theacademy.com.ng/generic/branch").then((data) => data.json()).then(({data}) => {
+    useEffect(() => {
+        axios.get("https://academy-api-sui8.onrender.com/api/v1/generic/branch").then(({data}) => {
             // console.log(data)
-            data?.map((branch) => {
+            setBranches(data?.data)
+            data?.data?.map((branch) => {
                 const option = document.createElement("option")
                 option.value = branch?.id
                 option.innerHTML = branch?.name
                 document.getElementById("branch_id").appendChild(option)
             })
-        })
-    }catch(err){
-        console.log(err)
-    }
+        }).catch((err) => console.log(err))
+    }, [])
+    
+
+    console.log(branches)
 
     console.log(msg)
     return (
@@ -202,6 +206,7 @@ function Registration() {
                     </div>
                     <select required onChange={(e) => setPayload({...payload, branchId: Number(e.target.value)})} id="branch_id" className="bg-gray-50 border border-gray-300 text-gray-900 mb-1 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value=''>What ta'aleem branch do you belong to?</option>
+                        {branches?.map(d => <option value={d?.id}>{d?.name}</option>)}
                     </select>
                     
                     <textarea  onChange={(e) => setPayload({...payload, address: e.target.value})} id='address' rows="1" className="block p-2.5 w-full text-sm mb-1 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="If None of the Above, Kindly state your location / area"></textarea>
