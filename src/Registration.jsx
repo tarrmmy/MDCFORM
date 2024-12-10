@@ -34,18 +34,20 @@ function Registration() {
     const button = document.getElementById("submit_button");
     const form = document.getElementById("regForm");
     // const error = document.getElementById("error_alert")
-    console.log(payload);
 
     try {
       button.innerHTML = "Loading...";
       setLoading(true);
-      fetch("https://api.theacademy.com.ng/camp/participant/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
+      fetch(
+        "https://academy-api-sui8.onrender.com/api/v1/camp/participant/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           setMsg(data.message);
@@ -100,9 +102,6 @@ function Registration() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(branches);
-
-  console.log(msg);
   return (
     <div className="App items-center">
       <Alert />
