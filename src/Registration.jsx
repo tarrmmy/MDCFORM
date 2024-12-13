@@ -75,6 +75,11 @@ function Registration() {
         });
     } catch (error) {
       console.log(error);
+      notification.error({
+        message: ` ${error || "An error occurred!!!"}`,
+        description: `Kindly try registering again!`,
+      });
+      setLoading(false);
     } finally {
       button.innerHTML = "Register";
     }
@@ -336,7 +341,7 @@ function Registration() {
             ))}
           </select>
 
-          <textarea
+          {/* <textarea
             onChange={(e) =>
               setPayload({ ...payload, address: e.target.value })
             }
@@ -344,7 +349,23 @@ function Registration() {
             rows="1"
             className="block p-2.5 w-full text-sm mb-1 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="If None of the Above, Kindly state your location / area"
-          ></textarea>
+          ></textarea> */}
+
+          <div className="relative mb-1">
+            <input
+              required
+              onChange={(e) =>
+                setPayload({ ...payload, address: e.target.value })
+              }
+              type="text"
+              id="school_name"
+              className="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+            />
+            <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">
+              Address
+            </label>
+          </div>
 
           <select
             onChange={(e) =>
@@ -377,6 +398,7 @@ function Registration() {
             className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             id="multiple_files"
             type="file"
+            required={payload.paymentMethod === "Transfer"}
           />
 
           <Btn
